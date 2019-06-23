@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+
+	<package name="default" extends="struts-default">
+
+		<action name="User_*" class="userAction" method="{1}">
+			<result name="showIndex">/home.jsp</result>
+			<result name="login" type="redirect">/index.jsp</result>
+			<result name="login_input">/login.jsp</result>
+			<result name="logout" type="redirect">/index.jsp</result>
+			<result name="register_input">/register.jsp</result>
+			<result name="register">/login.jsp</result>
+			<result name="updateInfo" type="redirect">/list_info.jsp</result>
+			<result name="updateInfoInput">/update_info_input.jsp</result>
+			<result name="changePassword" type="redirectAction">User_logout</result>
+			<result name="change_password_input">/change_password_input.jsp</result>
+			
+			
+		</action>
+		
+		<action name="Category_*" class="categoryAction" method="{1}">
+		</action>
+		
+		<action name="Product_*" class="productAction" method="{1}">
+			<result name="listAllProductByPageAndCid">/product_list.jsp</result>
+			<result name="listOneProductByPid">/product.jsp</result>
+			<result name="listAllProductByPageAndPname">/product_list_by_name.jsp</result>
+		</action>
+		
+		<action name="Cart_*" class="cartAction" method="{1}">
+			<result name="login_input">/login.jsp</result>
+			<result name="addCartItem" type="redirect">/cart.jsp</result>
+			<result name="clearCart" type="redirect">/cart.jsp</result>
+			<result name="removeCartItem" type="redirect">/cart.jsp</result>
+		</action>
+		
+		<action name="Order_*" class="orderAction" method="{1}">
+			<result name="submitOrder">/order.jsp</result>
+			<result name="listAllOrderByUid">/order_list.jsp</result>
+			<result name="toPayOrder">/order.jsp</result>
+			<result name="payOrder" type="redirectAction">Order_listAllOrderByUid</result>
+			<result name="verifyReceiveGoods" type="redirectAction">Order_listAllOrderByUid</result>
+		</action>
+		
+	</package>
+
+	<package name="admin" extends="struts-default" namespace="/admin">
+	
+		<action name="Admin_*" class="adminAction" method="{1}">
+			<result name="listAllProductByPageAndPname">/admin/product_list_by_name.jsp</result>
+			<result name="login" type="redirect">/admin/main.jsp</result>
+			<result name="login_input">/admin/index.jsp</result>
+			<result name="logout">/admin/index.jsp</result>
+			
+			<result name="listAllCategory">/admin/list_all_category.jsp</result>
+			<result name="saveOrUpdateCategory" type="redirectAction">Admin_listAllCategory</result>
+			<result name="updateCategoryInput">/admin/update_category_input.jsp</result>
+			<result name="deleteCategory" type="redirectAction">Admin_listAllCategory</result>
+			
+			<result name="listAllProductByPage">/admin/product_list.jsp</result>
+			<result name="listOneProductByPid">/admin/product.jsp</result>
+			<result name="saveProductInput">/admin/save_product_input.jsp</result>
+			<result name="saveProduct" type="redirectAction">Admin_listAllProductByPage</result>
+			<result name="updateProductInput">/admin/update_product_input.jsp</result>
+			<result name="updateProduct" type="redirectAction">Admin_listAllProductByPage</result>
+			<result name="deleteProduct" type="redirectAction">Admin_listAllProductByPage</result>
+			<result name="listAllProductByPageAndCid">/admin/product_list_by_cid.jsp</result>
+			
+			
+			<result name="listPayedOrder">/admin/order_list.jsp</result>
+			<result name="listCompletedOrder">/admin/order_list.jsp</result>
+			<result name="listOrderByOid">/admin/order_info.jsp</result>
+			<result name="deleverGoods" type="redirectAction">Admin_listPayedOrder</result>
+			<result name="informReceiveGoods" type="redirectAction">Admin_listPayedOrder</result>
+			
+			<result name="listAllUserByPage">/admin/user_list.jsp</result>
+			<result name="deleteUser" type="redirectAction">Admin_listAllUserByPage</result>
+			<result name="saveUserInput">/admin/save_user_input.jsp</result>
+			<result name="saveUser" type="redirectAction">Admin_listAllUserByPage</result>
+			<result name="updateUserInput">/admin/update_user_input.jsp</result>
+			<result name="updateUser" type="redirectAction">Admin_listAllUserByPage</result>
+			<result name="updateInfoInput">/admin/update_user_input.jsp</result>
+			
+			
+		</action>
+		
+	</package>
+
+</struts>
